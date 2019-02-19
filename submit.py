@@ -25,4 +25,5 @@ def main():
     """The entry point."""
     process = run("bsub", input=job, encoding='ascii', capture_output=True)
     print(process.stdout)
+    print(process.stderr)
     print(process.returncode)
