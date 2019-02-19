@@ -1,6 +1,7 @@
 """
 launch HPC jobs
 from interactive node:
+
 module add python/anaconda/2018.12/3.6
 source activate submit
 
@@ -9,19 +10,19 @@ submit
 """
 from subprocess import run
 
-cmd = [
-    'bsub',
-    '-q', 'short-ib',
-    '-J', 'subtest',
-    '-oo', 'P-subtest.out',
-    '-eo', 'P-subtest.err',
-    ". /etc/profile",
-    "module add python/anaconda/2018.12/3.6",
-    "source activate submit",
-    'simple', 'arg1', 'arg2', 'arg3'
-]
+job = """#BSUB -q short-ib
+#BSUB -J subtest
+#BSUB -oo P-subtest.out
+#BSUB -eo P-subtest.err
+. /etc/profile
+module add python/anaconda/2018.12/3.6
+source activate submit
+simple arg1 arg2 arg3
+"""
 
 
 def main():
-    process = run(cmd, capture_output=True)
-    print(process)
+    """The entry point."""
+    process = run("bsub", input=job, encoding='ascii')
+    print(process.stdout)
+    print(process.returncode)
