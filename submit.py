@@ -9,6 +9,8 @@ submit
 
 """
 from subprocess import run
+import sys
+
 
 job = """#BSUB -q short-ib
 #BSUB -J subtest
@@ -23,7 +25,6 @@ simple arg1 arg2 arg3
 
 def main():
     """The entry point."""
-    process = run("bsub", input=job, encoding='ascii', capture_output=True)
-    print(process.stdout)
-    print(process.stderr)
-    print(process.returncode)
+    process = run("bsub", input=job, encoding='ascii')
+    if process.returncode != 0:
+        print("Return code:", process.returncode, file=sys.stderr)
