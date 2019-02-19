@@ -28,5 +28,5 @@ def main():
     p = run("bsub", input=job, encoding='ascii', stderr=PIPE, stdout=PIPE)
     if p.returncode != 0:
         print("Return code:", p.returncode, file=sys.stderr)
-    print(p.stderr)
-    print(p.stdout)
+    print("stderr", p.stderr)
+    print("stdout", p.stdout)
