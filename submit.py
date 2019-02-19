@@ -8,7 +8,7 @@ source activate submit
 submit
 
 """
-from subprocess import run
+from subprocess import run, PIPE
 import sys
 
 
@@ -25,6 +25,8 @@ simple arg1 arg2 arg3
 
 def main():
     """The entry point."""
-    process = run("bsub", input=job, encoding='ascii')
-    if process.returncode != 0:
-        print("Return code:", process.returncode, file=sys.stderr)
+    p = run("bsub", input=job, encoding='ascii', stderr=PIPE, stdout=PIPE)
+    if p.returncode != 0:
+        print("Return code:", p.returncode, file=sys.stderr)
+    print(p.stderr)
+    print(p.stdout)
