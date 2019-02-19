@@ -23,6 +23,6 @@ simple arg1 arg2 arg3
 
 def main():
     """The entry point."""
-    process = run("bsub", input=job, encoding='ascii')
+    process = run("bsub", input=job, encoding='ascii', capture_output=True)
     print(process.stdout)
     print(process.returncode)
