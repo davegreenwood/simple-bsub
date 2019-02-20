@@ -29,6 +29,16 @@ Where env.yml defines the environment.
 For the example here the env installs pip, which is subsequently used to install
 our custom module, directly from a git repo.
 
+### HPC
+
+On the cluster, the login node does not have conda command available. It is
+necessary to add the anaconda module eg:
+
+        module add python/anaconda/2018.12/3.6
+
+This is probably best done from an interactive queue, but will still install
+the env in the `~/.conda` directory.
+
 ## Subprocess
 
 With current versions of Python, the recommended call is `run` which is a convenience
