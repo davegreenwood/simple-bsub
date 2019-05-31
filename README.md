@@ -33,10 +33,17 @@ our custom module, directly from a git repo.
 On the cluster, the login node does not have conda command available. It is
 necessary to add the anaconda module eg:
 
-    module add python/anaconda/2018.12/3.6
+    module add python/anaconda/2019.3/3.7
 
 This is probably best done from an interactive queue, but will still install
 the env in the `~/.conda` directory.
+
+Many modules that pip installs are not just pure python, the install process
+requires the building of binaries. You will soon find out, as pip will throw an
+erro and complain of missing a build environment. In a lot of cases, this can
+be solved by adding the CMake module as well as anaconda:
+
+    module add cmake/3.12.2
 
 ## Subprocess
 

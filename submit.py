@@ -17,7 +17,7 @@ job = """#BSUB -q short-ib
 #BSUB -oo subtest.out
 #BSUB -eo subtest.err
 . /etc/profile
-module add python/anaconda/2018.12/3.6
+module add python/anaconda/2019.3/3.7
 source activate submit
 simple arg1 arg2 arg3
 """
